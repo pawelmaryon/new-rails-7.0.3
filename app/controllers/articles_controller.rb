@@ -17,13 +17,18 @@ class ArticlesController < ApplicationController
       redirect_to article_path(@article)
     else
       render :new
-    else
+    end
   end
 
   def edit
   end
 
   def update
+    if @article.update!(article_params)
+      redirect_to article_path(@article)
+    else
+      render :edit
+    end
   end
 
   def destroy
