@@ -8,25 +8,6 @@
 } %></p>
 
 <h2>Comments:</h2>
-<% @article.comments.each do | comment| %>
-  <h3>Commenter: <%= comment.commenter %></h3>
-  <p>Comment :<%= comment.body %></p>
-  <p><%= link_to "delete comment", [comment.article, comment], data: {
-                                                                    turbo_method: :delete,
-                                                                    turbo_confirm: "are you sure?"
-  } %></p>
-<% end %>
+<%= render @article.comments %>
 
-<%= form_with model: [@article, @article.comments.build] do |form| %>
-  <div>
-    <%= form.label :commenter %>
-    <%= form.text_field :commenter %>
-  </div>
-  <div>
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+<%= render "comments/form" %>
